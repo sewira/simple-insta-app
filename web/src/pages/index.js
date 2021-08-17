@@ -1,2 +1,3 @@
 import Main from './Main';
-export { Main };
+import Register from './Register';
+export { Main, Register };
