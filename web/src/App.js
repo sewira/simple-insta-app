@@ -3,7 +3,8 @@ import { Main, Register } from './pages';
 function App() {
   return (
     <div>
-      <Register />
+      {/* <Register /> */}
+      <Main />
     </div>
   );
 }
