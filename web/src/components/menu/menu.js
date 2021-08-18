@@ -4,17 +4,24 @@ import { ReactComponent as Home } from '../assets/home.svg'
 import { ReactComponent as Inbox } from '../assets/inbox.svg'
 import { ReactComponent as Explore } from '../assets/explore.svg'
 import { ReactComponent as Notifications } from '../assets/notifications.svg'
-import profileIcon from '../assets/profileIcon.png'
+import { Link } from 'react-router-dom';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 
 
 const Menu = () => {
     return (
         <div className="menu">
-            <Home className="icon" />
-            <Inbox className="icon" />
-            <Explore className="icon" />
-            <Notifications className="icon" />
-            <img src={profileIcon} alt="profile icon" width="26" height="26" />
+            <div className="menu-container">
+                <Home className="icon" />
+                <Inbox className="icon" />
+                <Explore className="icon" />
+                <Notifications className="icon" />
+                <button className="button-upload">
+                    <a href="/postImage"><AddToPhotosIcon fontSize="medium" /></a>
+                </button>
+                <img className="image-profile" src="https://i.pravatar.cc/150?img=1" alt="profile icon" width="23" height="23" />
+            </div>
+
         </div>
     );
 };
