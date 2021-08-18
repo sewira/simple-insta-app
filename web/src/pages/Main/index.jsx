@@ -1,4 +1,6 @@
 import React from 'react';
+
+// contoh import
 import { Button, Input } from '../../components';
 
 const Main = () => {
