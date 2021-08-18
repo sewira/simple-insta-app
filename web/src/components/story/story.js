@@ -4,8 +4,10 @@ import './story.scss';
 const Story = (props) => {
     return (
         <div className="story">
-            <img src={props.imagestories} alt="" width="50" height="50" />
-            <p>{props.username}</p>
+            <div className="image-border">
+                <img className="imagestories" src={props.imagestories} alt="" width="60" height="60" />
+            </div>
+            <p className="username">{props.username}</p>
         </div>
     )
 }

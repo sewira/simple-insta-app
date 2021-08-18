@@ -1,15 +1,38 @@
+@import '../properties';
 .menu {
     display: flex;
     padding-right: 1.5em;
+    .menu-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-    .icon {
-        margin-right: 1.5em;
-        width: 23px;
-        height: 23px;
-
-        &:hover {
-            cursor: pointer;
-        }
     }
+        .icon {
+            margin-right: 1.5em;
+            width: 23px;
+            height: 23px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .button-upload {
+            width:25px;
+            height:25px;
+            border: none;
+            // border-radius: 50%;
+            background-color: $background-white;
+            &:hover {
+                cursor: pointer;
+            }
+            .plus{
+                padding:2px;
+            }
+        }
+        .image-profile {
+            margin-left: 1.5em;
+            border-radius: 50%;
+        }
 
 }

@@ -3,7 +3,94 @@
 .instaposts {
     background-color: $background-white;
     width: 600px;
-    height: 500px;
+    height: 750px;
     border: 1px solid $border-color-grey;
     margin-top: 30px;
+    .instaposts-container{
+        display: flex;
+        flex-direction: column;
+    }
+        .insta-header{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 10px;
+            #insta-imageProfile{
+                width:40px;
+                height:40px;
+                border-radius: 50%;
+            }
+            .insta-username{
+                font-family: $font;
+                font-size: 12px;
+                padding-left: 15px;
+            }
+            .insta-option{
+                padding-left: 460px;
+            }
+        }
+            
+        .insta-image{
+            .insta-images{
+                width:598px;
+                height:550px;
+            }
+        }
+        .insta-icons{
+            padding:10px 0 0 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .comment, .share {
+                padding-left: 15px;
+            }
+            .save {
+                padding-left: 450px;
+            }
+        }
+        .insta-likes{
+            padding:5px 0 0 15px;
+            font-family: $font;
+            font-size: 15px;
+        }
+        .insta-caption{
+            padding:5px 0 0 15px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .caption-username, .caption{
+                font-family: $font;
+            }
+            .caption-username {
+                font-size: 10px;
+                font-weight: bold;
+            }
+            .caption{
+                margin-left:10px;
+                font-size: 10px;
+            }
+        }
+        .insta-comment{
+            margin-top:10px;
+            border-top: 1px solid $border-color-grey;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding:10px 0 0 15px;
+            .add-comment, .send{
+                font-family: $font;
+                font-size: 12px;
+            }
+            .add-comment{
+                padding-left: 20px;
+            }
+            .send{
+                padding-left:390px;
+                color: $link-color
+            }
+
+        }
+        
+        
+
 }
