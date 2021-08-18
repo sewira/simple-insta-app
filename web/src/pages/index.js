@@ -1,4 +1,4 @@
 import Main from './Main';
-import Register from './Register';
 import Login from './Login';
-export { Main, Register, Login };
+import Register from './Register';
+export { Main, Login, Register };

@@ -1,0 +1,9 @@
+@import '../properties';
+
+.instaposts {
+    background-color: $background-white;
+    width: 600px;
+    height: 500px;
+    border: 1px solid $border-color-grey;
+    margin-top: 30px;
+}
