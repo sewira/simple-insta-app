@@ -1,56 +1,55 @@
 @import '../properties';
 
 .navigation {
-    // position: fixed;
-    top: 0;
-    z-index: 2;
-    background-color: $background-white;
-    width: 100%;
-    border-bottom: 1px solid $border-color-grey;
+  position: fixed;
+  top: 0;
+  background-color: $background-white;
+  width: 100%;
+  border-bottom: 1px solid $border-color-grey;
 
-    .nav-container {
-        padding: 1em 0 0.9em 0;
-        display: flex;
-        align-content: center;
-        justify-content: space-between;
-        max-width: 1000px;
-        margin: 0 auto;
+  .nav-container {
+    padding: 1em 0 0.9em 0;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
 
-        .logo {
-            padding: 0 1em;
-            width: 120px;
-            height: 25px;
+    .logo {
+      padding: 0 1em;
+      width: 120px;
+      height: 25px;
 
-            &:hover {
-                cursor: pointer;
-            }
-        }
-
-        .search {
-            border: 1px solid $border-color-grey;
-            border-radius: 3px;
-            background-color: $background-grey;
-            min-width: 223px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: $font-color-secondary;
-            font-size: 0.85em;
-            font-weight: 300;
-            width: 100px;
-
-            .searchIcon {
-                width: 10px;
-                margin-right: 0.3em;
-            }
-        }
+      &:hover {
+        cursor: pointer;
+      }
     }
+
+    .search {
+      border: 1px solid $border-color-grey;
+      border-radius: 3px;
+      background-color: $background-grey;
+      min-width: 223px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $font-color-secondary;
+      font-size: 0.85em;
+      font-weight: 300;
+      width: 100px;
+
+      .searchIcon {
+        width: 10px;
+        margin-right: 0.3em;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 500px) {
-    .searchText {
-        color: $font-color-secondary;
-        font-size: 0.85em;
-        font-weight: 300;
-    }
+  .searchText {
+    color: $font-color-secondary;
+    font-size: 0.85em;
+    font-weight: 300;
+  }
 }

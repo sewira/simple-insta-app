@@ -4,17 +4,14 @@ import Stories from '../stories/stories';
 import './content.scss';
 
 const Content = () => {
-    return (
-        <div className="content">
-            <div className="content-container">
-                <Stories />
-                <Instaposts />
-            </div>
-
-
-        </div>
-    )
-}
+  return (
+    <div className="content">
+      <div className="content-container">
+        <Stories />
+        <Instaposts />
+      </div>
+    </div>
+  );
+};
 
 export default Content;
-
