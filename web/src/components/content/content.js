@@ -3,12 +3,12 @@ import Instaposts from '../instaposts/instaposts';
 import Stories from '../stories/stories';
 import './content.scss';
 
-const Content = () => {
+const Content = (props) => {
   return (
     <div className="content">
       <div className="content-container">
         <Stories />
-        <Instaposts />
+        <Instaposts image={props.image} />
       </div>
     </div>
   );

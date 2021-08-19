@@ -1,17 +1,43 @@
 import { Button } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 import ButtonUpload from '../assets/buttonUpload.png';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CloseIcon from '@material-ui/icons/Close';
 import './style.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchImage, postImage } from '../../redux/actions/imageAction';
+import { isSuccess, isLoading } from '../../redux/reducers/imageReducer';
+import { useHistory } from 'react-router-dom';
 
 const Modal = (props) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const sukses = useSelector(isSuccess);
+  const loading = useSelector(isLoading);
+
   const [image, setImage] = useState('');
+  const [previewImage, setPreviewImage] = useState('');
+  const [imageName, setImageName] = useState('');
 
   const handleChange = (e) => {
-    setImage(e.target.files);
+    setImage(e.target.files[0]);
+    setPreviewImage(e.target.files);
+    setImageName(e.target.files[0].name);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append('image', image, imageName);
+    dispatch(postImage(formData, history));
+  };
+
+  useEffect(() => {
+    if (sukses) {
+      props.handleCloseModal();
+    }
+  }, [dispatch]);
 
   return (
     <div>
@@ -32,27 +58,30 @@ const Modal = (props) => {
               src={
                 image === ''
                   ? ButtonUpload
-                  : URL.createObjectURL(new Blob(image))
+                  : URL.createObjectURL(new Blob(previewImage))
               }
               alt="upload_photo"
             />
           </div>
 
-          <input
-            className="input"
-            type="file"
-            accept="image/*"
-            onChange={handleChange}
-          />
-          {image && (
-            <Button
-              variant="contained"
-              color="default"
-              startIcon={<CloudUploadIcon />}
-            >
-              Upload
-            </Button>
-          )}
+          <form onSubmit={handleSubmit}>
+            <input
+              className="input"
+              type="file"
+              accept="image/*"
+              onChange={handleChange}
+            />
+            {image && (
+              <Button
+                type="submit"
+                variant="contained"
+                color="default"
+                endIcon={<CloudUploadIcon />}
+              >
+                Upload
+              </Button>
+            )}
+          </form>
         </div>
       </ReactModal>
     </div>
