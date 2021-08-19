@@ -4,9 +4,10 @@ const User = require('../database/model/userModel');
 
 exports.upload = async (req, res) => {
   try {
+    console.log(req.user.id);
+
     const result = await cloudinary.uploader.upload(req.file.path);
-    console.log(req.params.user_id);
-    const user = await User.findById(req.params.user_id);
+    const user = await User.findById(req.user.id);
     if (!user) {
       res.status(404).json({
         statusText: "Not Found",
@@ -14,7 +15,7 @@ exports.upload = async (req, res) => {
       });
     } else {
       const insertUrl = await new Content({
-        userId: req.params.user_id,
+        userId: req.user.id,
         images: result.url
       });
       insertUrl.save(insertUrl);
@@ -25,7 +26,6 @@ exports.upload = async (req, res) => {
       });
     };
   } catch (error) {
-    console.log("🦄 ~ file: userActivity.js ~ line 12 ~ exports.upload= ~ error", error);
     res.status(400).json({
       message: 'Something went wrong while processing your request',
       data: error.message
@@ -35,7 +35,7 @@ exports.upload = async (req, res) => {
 
 exports.getAllPost = async (req, res) => {
   try {
-    const contents = await Content.find({ userId: req.params.user_id}).select('images -_id')
+    const contents = await Content.find({ userId: req.user.id}).select('images -_id')
     if (!contents) {
       res.status(404).json({
         statusText: "Not Found",
