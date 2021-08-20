@@ -4,7 +4,6 @@ const passwordComplexity = require("joi-password-complexity");
 const complexityOptions = {
   min: 8,
   max: 30,
-  numeric: 1
 }
 
 exports.register = async (req, res, next) => {
@@ -41,13 +40,7 @@ exports.login = async (req, res, next) => {
   try {
     const Schema = joi.object({
       password: passwordComplexity(complexityOptions),
-      email: joi.string()
-      .email({
-        minDomainSegments: 2,
-        tlds: { allow: ["com", "net"] },
-      })
-      .lowercase()
-      .required(),
+      username: joi.string().required()
     }).options({ abortEarly: false });
     
     const { value, error } = await Schema.validate(req.body);
