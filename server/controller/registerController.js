@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 
 exports.register = async (req, res) => {
   try {
-    const findUser = await User.findOne({ email: req.body.email })
+    const findUser = await User.findOne({ username: req.body.username })
     if(findUser){
       res.status(400).json({
         statusText: "Bad Request",
@@ -35,18 +35,17 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const findUser = await User.findOne({ email: req.body.email }).exec();
+    const findUser = await User.findOne({ username: req.body.username }).exec();
     if(!findUser){
       res.status(401).json({
         statusText: "Unauthorized",
-        message: "Incorrect Email or Password"
+        message: "Incorrect Username or Password"
       });
     } else {
       const checkPassword = await bcrypt.compare(req.body.password, findUser.password);
 
       if(checkPassword) {
         const session_id = uuidv4();
-        console.log("🦄 ~ file: registerController.js ~ line 50 ~ exports.login= ~ session_id", session_id)
 
         findUser.session_id = session_id;
         findUser.save();
