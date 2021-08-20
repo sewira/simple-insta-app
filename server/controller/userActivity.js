@@ -4,10 +4,8 @@ const User = require('../database/model/userModel');
 
 exports.upload = async (req, res) => {
   try {
-    console.log(req.user.id);
-
     const result = await cloudinary.uploader.upload(req.file.path);
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.params.user_id);
     if (!user) {
       res.status(404).json({
         statusText: "Not Found",
@@ -15,7 +13,7 @@ exports.upload = async (req, res) => {
       });
     } else {
       const insertUrl = await new Content({
-        userId: req.user.id,
+        userId: req.params.user_id,
         images: result.url
       });
       insertUrl.save(insertUrl);
@@ -35,7 +33,7 @@ exports.upload = async (req, res) => {
 
 exports.getAllPost = async (req, res) => {
   try {
-    const contents = await Content.find({ userId: req.user.id}).select('images -_id')
+    const contents = await Content.find({ userId: req.params.user_id}).select('images -_id')
     if (!contents) {
       res.status(404).json({
         statusText: "Not Found",
