@@ -30,7 +30,8 @@ const Modal = (props) => {
     e.preventDefault();
     let formData = new FormData();
     formData.append('image', image, imageName);
-    dispatch(postImage(formData, history));
+    console.log(image, imageName);
+    dispatch(postImage(formData));
   };
 
   useEffect(() => {

@@ -4,10 +4,11 @@ import { IMAGE, LOADING } from '../types';
 export const fetchImage = () => async (dispatch) => {
   dispatch(setLoading());
 
+  const token = window.localStorage.getItem('token');
+
   const config = {
     headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMWU2MmM5MjA4YmExNTUxZDI1YTQ2YyIsInNlc3Npb25faWQiOiJhYjk4ZDI5Yy1iOGNiLTRlYTctYjM3OS1hNzY5ZjQ5ZmZjODgiLCJpYXQiOjE2MjkzODQ1NTh9.MTI-LUJT1x8SPKmu4Ebfe7_wl0yyw2_sgDXDbUTritw',
+      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -26,10 +27,17 @@ export const fetchImage = () => async (dispatch) => {
 };
 
 export const postImage = (data) => async (dispatch) => {
+  const token = window.localStorage.getItem('token');
+
+  const config = {
+    headers: { Authorization: `Bearer ${token}` },
+  };
+
   try {
     const res = await axios.post(
-      `https://mockinsta.herokuapp.com/api/upload/611cebabbf525f601247c85c`,
-      data
+      `https://mockinsta.herokuapp.com/api/upload`,
+      data,
+      config
     );
 
     if (res.status === 200) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles({
 
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [form, setForm] = useState({
     email: '',
     username: '',
@@ -41,7 +43,6 @@ const Login = () => {
   });
 
   const [msgError, setmsgError] = useState('error');
-  const [errorEmail, setErrorEmail] = useState(false);
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
 
@@ -54,34 +55,43 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorEmail(false);
+
     setErrorUsername(false);
     setErrorPassword(false);
-    if (
-      form.email === '' &&
-      form.username === '' &&
-      form.password === '' &&
-      form.confirmPassword === ''
-    ) {
-      setErrorEmail(true);
+    if (form.username === '' && form.password === '') {
       setErrorUsername(true);
       setErrorPassword(true);
       setmsgError('Please input all fields');
-    } else if (form.email.length < 8) {
-      setErrorEmail(true);
-      setmsgError('Email invalid');
-      console.log(form.email.length);
     } else if (form.username.length < 6) {
       setErrorUsername(true);
       setmsgError('Character must be at least 6 characters');
     } else if (form.password.length < 6) {
       setErrorPassword(true);
       setmsgError('Character must be at least 6 characters');
-    } else if (form.password !== form.confirmPassword) {
-      setErrorPassword(true);
-      setmsgError('Password dont match');
     } else {
-      console.log(form);
+      console.log('login');
+      var myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/json');
+
+      var raw = JSON.stringify({
+        email: 'username123@gmail.com',
+        password: 'gmailcom123',
+      });
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow',
+      };
+
+      const store = window.localStorage;
+
+      fetch('https://mockinsta.herokuapp.com/api/signin/', requestOptions)
+        .then((response) => response.json())
+        .then((result) => store.setItem('token', result.token))
+        .then(() => history.push('/home'))
+        .catch((error) => console.log('error', error));
     }
   };
 
@@ -124,7 +134,7 @@ const Login = () => {
           />
 
           <Button type="submit" variant="outlined" color="primary" fullWidth>
-            Sign Up
+            Sign in
           </Button>
         </form>
         <div>
