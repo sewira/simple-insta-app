@@ -10,6 +10,8 @@ Member :
 - Bayu Rizkyadi Sasranagara (BE)
 - Rizky Amelia Yulistianingsih (RN)
 
+  **Demo Wwebsite: https://simpleinsta.netlify.app/**
+
 ## **General Overview**
 
 ---
