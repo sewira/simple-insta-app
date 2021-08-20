@@ -9,6 +9,7 @@ import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { userLogout } from '../../redux/actions/UserAction';
+import { Button } from '@material-ui/core';
 
 const Menu = (props) => {
   const history = useHistory();
@@ -21,7 +22,7 @@ const Menu = (props) => {
   return (
     <div className="menu">
       <div className="menu-container">
-        <Home className="icon" onClick={() => handleLogout()} />
+        <Home className="icon" />
         <Inbox className="icon" />
         <Explore className="icon" />
         <Notifications className="icon" />
@@ -35,6 +36,9 @@ const Menu = (props) => {
           width="23"
           height="23"
         />
+        <Button color="secondary" onClick={() => handleLogout()}>
+          Logout
+        </Button>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Button, TextField, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { userRegister } from '../../redux/actions/UserAction';
 import { isLogin } from '../../redux/reducers/userReducer';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const useStyles = makeStyles({
@@ -190,7 +190,9 @@ const Register = () => {
         <div>
           <Typography className={classes.title_footer}>
             Already have a account?{' '}
-            <span style={{ color: '#5C5CFF' }}> Login</span>
+            <Link to="/">
+              <span style={{ color: '#5C5CFF' }}> Login</span>
+            </Link>
           </Typography>
         </div>
       </div>
