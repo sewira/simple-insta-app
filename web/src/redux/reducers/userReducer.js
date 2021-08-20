@@ -1,14 +1,7 @@
-import { USER } from '../types';
-
-const store = window.localStorage;
-const token = store.getItem('token');
-
 const initialState = {
-  isLogin: token ? true : false,
-  //   isLogin: true,
-  loading: false,
-  regisSukses: false,
-  loginSukses: false,
+  isLogin: false,
+  userId: '',
+  token: '',
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -16,18 +9,24 @@ export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'regis/sukses':
+    case 'user/login':
+      const { token, data } = payload;
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', data.userId);
       return {
         ...state,
-        loading: false,
-        regisSukses: true,
+        isLogin: true,
+        userId: data.userId,
+        token: token,
       };
 
-    case 'login/sukses':
+    case 'user/logout':
+      localStorage.clear();
       return {
         ...state,
-        loading: false,
-        loginSukses: true,
+        isLogin: false,
+        userId: '',
+        token: '',
       };
 
     default:

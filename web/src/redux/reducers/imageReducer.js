@@ -12,21 +12,16 @@ export default (state = initialState, action) => {
 
   switch (type) {
     case IMAGE.GET_IMAGE:
-      const data = payload.reverse();
-
       return {
         ...state,
-        image: data,
+        image: payload.reverse(),
         loading: false,
         isSuccess: false,
       };
 
     case IMAGE.POST_IMAGE:
-      const newImages = state.image.push(payload);
-
       return {
         ...state,
-        image: newImages,
         loading: false,
         isSuccess: true,
       };

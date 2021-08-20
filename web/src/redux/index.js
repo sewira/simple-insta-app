@@ -5,24 +5,25 @@ import thunk from 'redux-thunk';
 import { rootReducer } from './reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-// };
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['user'],
+};
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-// const store = createStore(
-//   persistedReducer,
-//   composeEnhancers(applyMiddleware(thunk))
-// );
-// const persistor = persistStore(store);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
+const persistor = persistStore(store);
 
-export { store };
+// const store = createStore(
+//   rootReducer,
+//   composeEnhancers(applyMiddleware(thunk))
+// );
+
+export { store, persistor };
 
 // export default store;

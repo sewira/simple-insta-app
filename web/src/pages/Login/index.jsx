@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { isLogin } from '../../redux/reducers/userReducer';
 
 const useStyles = makeStyles({
   root: {
@@ -35,6 +37,8 @@ const useStyles = makeStyles({
 const Login = () => {
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const login = useSelector(isLogin);
   const [form, setForm] = useState({
     email: '',
     username: '',
@@ -45,6 +49,10 @@ const Login = () => {
   const [msgError, setmsgError] = useState('error');
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+
+  if (login) {
+    return <Redirect to="/home" />;
+  }
 
   const handleChange = (e) => {
     setForm({
@@ -74,8 +82,8 @@ const Login = () => {
       myHeaders.append('Content-Type', 'application/json');
 
       var raw = JSON.stringify({
-        email: 'username123@gmail.com',
-        password: 'gmailcom123',
+        username: form.username,
+        password: form.password,
       });
 
       var requestOptions = {
@@ -85,11 +93,9 @@ const Login = () => {
         redirect: 'follow',
       };
 
-      const store = window.localStorage;
-
       fetch('https://mockinsta.herokuapp.com/api/signin/', requestOptions)
         .then((response) => response.json())
-        .then((result) => store.setItem('token', result.token))
+        .then((result) => dispatch({ type: 'user/login', payload: result }))
         .then(() => history.push('/home'))
         .catch((error) => console.log('error', error));
     }
