@@ -50,8 +50,8 @@ function Instaposts(props) {
               <h6>{post.likes} likes</h6>
             </div>
             <div className="insta-caption">
-              <p className="caption-username">{post.username}</p>
-              <p className="caption">{post.caption}</p>
+              <p className="caption-username">Maria</p>
+              <p className="caption">Keep Pratice</p>
             </div>
             <div className="insta-comment">
               <Emoji />

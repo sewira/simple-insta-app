@@ -3,7 +3,10 @@ const IMAGE = {
   UPLOAD_IMAGE: 'image/uploadImage',
 };
 
-const USER = {};
+const USER = {
+  LOGIN: 'user/login',
+  REGISTER: 'user/register',
+};
 
 const LOADING = 'loading';
 

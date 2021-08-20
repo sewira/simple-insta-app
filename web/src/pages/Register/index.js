@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Typography } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { userRegister } from '../../redux/actions/UserAction';
+import { isLogin } from '../../redux/reducers/userReducer';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -32,6 +36,8 @@ const useStyles = makeStyles({
 });
 
 const Register = () => {
+  const dispatch = useDispatch();
+  const login = useSelector(isLogin);
   const classes = useStyles();
   const [form, setForm] = useState({
     email: '',
@@ -81,7 +87,13 @@ const Register = () => {
       setErrorPassword(true);
       setmsgError('Password dont match');
     } else {
-      console.log(form);
+      const data = {
+        email: form.email,
+        username: form.username,
+        password: form.password,
+      };
+
+      dispatch(userRegister(data));
     }
   };
 
