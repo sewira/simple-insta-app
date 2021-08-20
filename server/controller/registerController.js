@@ -76,7 +76,7 @@ exports.login = async (req, res) => {
 exports.logout = async (req, res) => {
   try {
     const deleteSessionId = await User.findOneAndUpdate(
-      { _id: req.user.id },
+      { _id: req.params.user_id },
       { session_id: null }
     );
 
