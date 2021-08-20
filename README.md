@@ -3,11 +3,12 @@
 **Glints Academy Practice**
 
 Member :
--Dian Wijaya (FE)
--Erdiatulha (FE)
--Anggita Ruzty (BE)
--Bayu Rizkyadi Sasranagara (BE)
--Rizky Amelia Yulistianingsih (RN)
+
+* Dian Wijaya (FE)
+* Erdiatulha (FE)
+* Anggita Ruzty (BE)
+* Bayu Rizkyadi Sasranagara (BE)
+* Rizky Amelia Yulistianingsih (RN)
 
 ## **General Overview**
 
