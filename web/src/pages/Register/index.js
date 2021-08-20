@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, TextField, Typography } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { userRegister } from '../../redux/actions/UserAction';
+import { isLogin } from '../../redux/reducers/userReducer';
+import { Redirect, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles({
   root: {
@@ -32,6 +37,8 @@ const useStyles = makeStyles({
 });
 
 const Register = () => {
+  const history = useHistory();
+  const login = useSelector(isLogin);
   const classes = useStyles();
   const [form, setForm] = useState({
     email: '',
@@ -52,7 +59,7 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorEmail(false);
     setErrorUsername(false);
@@ -73,15 +80,43 @@ const Register = () => {
       console.log(form.email.length);
     } else if (form.username.length < 6) {
       setErrorUsername(true);
-      setmsgError('Character must be at least 6 characters');
-    } else if (form.password.length < 6) {
+      setmsgError('Character must be at least 8 characters');
+    } else if (form.password.length < 8) {
       setErrorPassword(true);
-      setmsgError('Character must be at least 6 characters');
+      setmsgError('Character must be at least 8 characters');
     } else if (form.password !== form.confirmPassword) {
       setErrorPassword(true);
       setmsgError('Password dont match');
     } else {
-      console.log(form);
+      const data = {
+        email: form.email,
+        username: form.username,
+        password: form.password,
+      };
+
+      console.log(data, 'data');
+
+      var myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+      var urlencoded = new URLSearchParams();
+      urlencoded.append('email', form.email);
+      urlencoded.append('username', form.username);
+      urlencoded.append('password', form.password);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow',
+      };
+
+      fetch(
+        'https://mockinsta.herokuapp.com/api/signin/register',
+        requestOptions
+      )
+        .then(() => history.push('/'))
+        .catch((error) => console.log('error', error));
     }
   };
 
