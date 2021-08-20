@@ -1,11 +1,19 @@
 # Technical Practice
+
 **Glints Academy Practice**
+
+Member :
+-Dian Wijaya (FE)
+-Erdiatulha (FE)
+-Anggita Ruzty (BE)
+-Bayu Rizkyadi Sasranagara (BE)
+-Rizky Amelia Yulistianingsih (RN)
 
 ## **General Overview**
 
+---
 
------
-Create a simple app like inst*gram that can post and see photos that you can upload.
+Create a simple app like inst\*gram that can post and see photos that you can upload.
 
 **BE**
 
@@ -28,7 +36,6 @@ Create a simple app like inst*gram that can post and see photos that you can upl
 1. Efficient methods to fulfill all the requirements.
 2. Good use of Git (commit every changes that you think it is your checkpoint).
 3. Document everything!
-
 
 **Details**
 
