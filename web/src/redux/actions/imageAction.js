@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { IMAGE, LOADING } from '../types';
 
-export const fetchImage = () => async (dispatch) => {
+export const fetchImage = () => async (dispatch, getState) => {
   dispatch(setLoading());
 
-  const token = window.localStorage.getItem('token');
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
 
   const config = {
     headers: {
@@ -14,7 +15,7 @@ export const fetchImage = () => async (dispatch) => {
 
   try {
     const res = await axios.get(
-      `https://mockinsta.herokuapp.com/api/posts`,
+      `https://mockinsta.herokuapp.com/api/posts/${userId}`,
       config
     );
 
@@ -27,15 +28,18 @@ export const fetchImage = () => async (dispatch) => {
 };
 
 export const postImage = (data) => async (dispatch) => {
-  const token = window.localStorage.getItem('token');
+  const token = localStorage.getItem('token');
+  const userId = localStorage.getItem('userId');
 
   const config = {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   };
 
   try {
     const res = await axios.post(
-      `https://mockinsta.herokuapp.com/api/upload`,
+      `https://mockinsta.herokuapp.com/api/upload/${userId}`,
       data,
       config
     );
