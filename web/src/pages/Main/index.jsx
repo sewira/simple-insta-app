@@ -1,3 +1,4 @@
+import { LinearProgress } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -21,6 +22,10 @@ const Main = () => {
     setShowModal(!showModal);
   };
 
+  if (!login) {
+    return <Redirect to="/" />;
+  }
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     dispatch(fetchImage());
@@ -30,7 +35,7 @@ const Main = () => {
     <div>
       <Navigation handleOpenModal={handleOpenModal} />
       {loading ? (
-        <h1 style={{ textAlign: 'center', marginTop: '120px' }}>Loading...</h1>
+        <LinearProgress />
       ) : (
         <div>
           <Modal isOpen={showModal} handleCloseModal={handleCloseModal} />
