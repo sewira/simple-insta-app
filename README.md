@@ -2,7 +2,7 @@
 
 **Glints Academy Practice**
 
-Member :
+**Member :**
 
 - Dian Wijaya (FE)
 - Erdiatulha (FE)
@@ -10,7 +10,13 @@ Member :
 - Bayu Rizkyadi Sasranagara (BE)
 - Rizky Amelia Yulistianingsih (RN)
 
-  **Demo Wwebsite: https://simpleinsta.netlify.app/**
+**Assets :**
+
+[Demo Website](https://simpleinsta.netlify.app/)
+
+[API Documentation](https://documenter.getpostman.com/view/16235311/TzzANGnk)
+
+[Public Repository](https://github.com/sewira/simple-insta-app)
 
 ## **General Overview**
 
